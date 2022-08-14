@@ -6,10 +6,11 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    width: Dimensions.get('window').width / 6 + 10,
-    height: 50,
+    // width: Dimensions.get('window').width / 6 + 10,
+    height: 60,
     resizeMode: 'contain',
     alignSelf: 'center',
     tintColor: '#da1e48',
+    margin: 5,
   },
 });
