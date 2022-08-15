@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import Colors from '../../constants/Colors/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -12,5 +13,14 @@ export default StyleSheet.create({
     alignSelf: 'center',
     tintColor: '#da1e48',
     margin: 5,
+  },
+  banner: {
+    color: Colors.primaryColor,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 24,
+    margin: 20,
+    textDecorationLine: 'underline',
+    textDecorationColor: Colors.primaryColor,
   },
 });

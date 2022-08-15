@@ -22,3 +22,11 @@ export const mainProductsAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+export const brandListAsync = createAsyncThunk(
+  'brandListSlice/brandListAsync',
+  async () => {
+    const response = await axios.get('brands');
+    return response.data;
+  },
+);

@@ -7,6 +7,7 @@ const getMainProductsSlice = createSlice({
     mainProducts: undefined,
     mainProductsIsLoading: false,
     mainProductsError: null,
+    mainProductsImgPath: undefined,
   },
   reducers: {},
   extraReducers: {
@@ -16,6 +17,7 @@ const getMainProductsSlice = createSlice({
     [mainProductsAsync.fulfilled]: (state, action) => {
       state.mainProductsIsLoading = false;
       state.mainProducts = action.payload.data;
+      state.mainProductsImgPath = action.payload.image_path;
     },
     [mainProductsAsync.rejected]: (state, action) => {
       state.mainProductsIsLoading = false;

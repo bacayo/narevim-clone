@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './ImageComponentStyles';
 import {useSelector} from 'react-redux';
 
-const ImageComponent = ({slider}) => {
-  const {image_path} = useSelector(state => state.getSlidersSlice);
+const ImageComponent = ({slider, image_path}) => {
+  // const {image_path} = useSelector(state => state.getSlidersSlice);
 
   return (
     <View>
