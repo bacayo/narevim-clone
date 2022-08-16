@@ -34,11 +34,22 @@ export const brandListAsync = createAsyncThunk(
   },
 );
 
-//* get first categories in category screen
-export const firsCategoriesAsync = createAsyncThunk(
+//* get first categories in category tab
+export const firstCategoriesAsync = createAsyncThunk(
   'getCategorySlice/firsCategoriesAsync',
   async () => {
     const response = await axios.get('firstCategories');
+    return response.data;
+  },
+);
+
+//* get second categories in category tab
+export const secondCategoriesAsync = createAsyncThunk(
+  'getCategorySlice/secondCategoriesAsync',
+  async data => {
+    const params = new FormData();
+    params.append(data.id);
+    const response = await axios.post('secondCategories', params);
     return response.data;
   },
 );

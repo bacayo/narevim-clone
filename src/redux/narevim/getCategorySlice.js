@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {firsCategoriesAsync} from '../../api';
+import {firstCategoriesAsync} from '../../api';
 
 const getCategorySlice = createSlice({
   name: 'getCategorySlice',
@@ -12,16 +12,16 @@ const getCategorySlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [firsCategoriesAsync.pending]: state => {
+    [firstCategoriesAsync.pending]: state => {
       state.isLoading = true;
     },
-    [firsCategoriesAsync.fulfilled]: (state, action) => {
+    [firstCategoriesAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.categories = action.payload.data;
       state.status = action.payload.status;
       state.categoriesImagePath = action.payload.image_path;
     },
-    [firsCategoriesAsync.rejected]: (state, action) => {
+    [firstCategoriesAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     },

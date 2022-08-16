@@ -5,7 +5,7 @@ import styles from './CategoriesScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import {useEffect} from 'react';
-import {firsCategoriesAsync} from '../../api';
+import {firstCategoriesAsync} from '../../api';
 
 const CategoriesScreen = () => {
   const dispatch = useDispatch();
@@ -15,20 +15,20 @@ const CategoriesScreen = () => {
   );
 
   const renderCategories = ({item}) => (
-    <CategoryCard image_path={categoriesImagePath} category={item} />
+    <CategoryCard
+      image_path={categoriesImagePath}
+      category={item}
+      screenName={'SecondCategories'}
+    />
   );
 
   useEffect(() => {
-    dispatch(firsCategoriesAsync());
+    dispatch(firstCategoriesAsync());
   }, [dispatch]);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={categories}
-        renderItem={renderCategories}
-        // ItemSeparatorComponent={ItemSeparatorComponent}
-      />
+      <FlatList data={categories} renderItem={renderCategories} />
     </View>
   );
 };
