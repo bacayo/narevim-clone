@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colors from '../../constants/Colors/Colors';
 
 export default StyleSheet.create({
@@ -11,7 +11,8 @@ export default StyleSheet.create({
     height: 60,
     resizeMode: 'contain',
     alignSelf: 'center',
-    tintColor: '#da1e48',
+    // tintColor: '#da1e48',
+    tintColor: Colors.primaryColor,
     margin: 5,
   },
   banner: {

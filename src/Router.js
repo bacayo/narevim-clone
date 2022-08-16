@@ -42,12 +42,14 @@ const Router = () => {
           component={HomeScreen}
           options={{
             headerShown: false,
+            title: Strings.homeScreen,
           }}
         />
         <Tab.Screen
           name="CategoriesScreen"
           component={CategoriesScreen}
           options={{
+            title: Strings.categories,
             headerTitle: Strings.categories,
             headerTitleAlign: 'center',
             headerTintColor: Colors.primaryColor,
@@ -57,8 +59,16 @@ const Router = () => {
             },
           }}
         />
-        <Tab.Screen name="BasketScreen" component={BasketScreen} />
-        <Tab.Screen name="MyProfileScreen" component={MyProfileScreen} />
+        <Tab.Screen
+          name="BasketScreen"
+          component={BasketScreen}
+          options={{title: Strings.basket}}
+        />
+        <Tab.Screen
+          name="MyProfileScreen"
+          component={MyProfileScreen}
+          options={{title: Strings.account}}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

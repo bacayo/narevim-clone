@@ -1,11 +1,4 @@
-import {
-  View,
-  Image,
-  FlatList,
-  ScrollView,
-  SectionList,
-  Text,
-} from 'react-native';
+import {View, Image, FlatList, ScrollView, Text} from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
