@@ -10,6 +10,7 @@ import MyProfileScreen from './screens/MyProfileScreen';
 
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Colors from './constants/Colors/Colors';
+import Strings from './constants/Strings/Strings';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +44,19 @@ const Router = () => {
             headerShown: false,
           }}
         />
-        <Tab.Screen name="CategoriesScreen" component={CategoriesScreen} />
+        <Tab.Screen
+          name="CategoriesScreen"
+          component={CategoriesScreen}
+          options={{
+            headerTitle: Strings.categories,
+            headerTitleAlign: 'center',
+            headerTintColor: Colors.primaryColor,
+            headerStyle: {
+              borderBottomColor: Colors.primaryColor,
+              borderBottomWidth: 1,
+            },
+          }}
+        />
         <Tab.Screen name="BasketScreen" component={BasketScreen} />
         <Tab.Screen name="MyProfileScreen" component={MyProfileScreen} />
       </Tab.Navigator>
