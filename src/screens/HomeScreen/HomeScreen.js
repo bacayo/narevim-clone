@@ -14,6 +14,7 @@ import SearchBar from '../../components/SearchBar';
 
 import ImageComponent from '../../components/ImageComponent';
 import ProductCard from '../../components/ProductCard';
+import BrandsCard from '../../components/BrandsCard';
 
 import {brandListAsync, getSlidersAsync, mainProductsAsync} from '../../api';
 import {useEffect} from 'react';
@@ -31,9 +32,14 @@ const HomeScreen = () => {
   const renderSlider = ({item}) => (
     <ImageComponent slider={item} image_path={image_path} />
   );
+  // const renderBrand = ({item}) => (
+  //   <ImageComponent slider={item} image_path={brandsImagePath} />
+  // );
+
   const renderBrand = ({item}) => (
-    <ImageComponent slider={item} image_path={brandsImagePath} />
+    <BrandsCard brand={item} image_path={brandsImagePath} />
   );
+
   const renderMainProducts = ({item}) => <ProductCard product={item} />;
 
   useEffect(() => {
@@ -56,6 +62,8 @@ const HomeScreen = () => {
       <SearchBar placeholder="Aramak istediğiniz ürünü girin..." />
       <ScrollView>
         <FlatList data={items} renderItem={renderSlider} />
+        <Text style={styles.brandsBanner}>Markalar</Text>
+
         <FlatList
           data={brands}
           renderItem={renderBrand}
