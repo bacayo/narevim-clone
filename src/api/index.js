@@ -5,6 +5,7 @@ import Config from 'react-native-config';
 const API_KEY = 'SSVa97j7z83nMXDzhmmdHSSLPG9NueDf3J6BgCSS';
 axios.defaults.headers['X-API-KEY'] = API_KEY;
 axios.defaults.baseURL = Config.BASE_URL;
+axios.defaults.headers['Content-Type'] = 'multipart/form-data';
 
 //* get sliders
 export const getSlidersAsync = createAsyncThunk(
@@ -45,11 +46,14 @@ export const firstCategoriesAsync = createAsyncThunk(
 
 //* get second categories in category tab
 export const secondCategoriesAsync = createAsyncThunk(
-  'getCategorySlice/secondCategoriesAsync',
+  'secondCategorySlice/secondCategoriesAsync',
   async data => {
     const params = new FormData();
-    params.append(data.id);
-    const response = await axios.post('secondCategories', params);
+    params.append('first_category_id', data.id);
+    console.log('00000000000000000000');
+    console.log(params);
+    console.log('00000000000000000000');
+    const response = await axios.post('secondCategories/', params);
     return response.data;
   },
 );
