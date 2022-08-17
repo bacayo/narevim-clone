@@ -18,7 +18,9 @@ const HomeScreen = () => {
   const {items, status, image_path} = useSelector(
     state => state.getSlidersSlice,
   );
-  const {mainProducts} = useSelector(state => state.getMainProductsSlice);
+  const {mainProducts, mainProductsImgPath} = useSelector(
+    state => state.getMainProductsSlice,
+  );
   const {brands, brandsImagePath} = useSelector(state => state.brandListSlice);
 
   //render sliders
@@ -33,7 +35,9 @@ const HomeScreen = () => {
     <BrandsCard brand={item} image_path={brandsImagePath} />
   );
 
-  const renderMainProducts = ({item}) => <ProductCard product={item} />;
+  const renderMainProducts = ({item}) => (
+    <ProductCard product={item} image_path={mainProductsImgPath} />
+  );
 
   useEffect(() => {
     dispatch(getSlidersAsync());

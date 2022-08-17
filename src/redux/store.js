@@ -3,17 +3,21 @@ import logger from 'redux-logger';
 
 import getCategorySlice from './narevim/getCategorySlice';
 import secondCategorySlice from './narevim/secondCategorySlice';
+import thirdCategorySlice from './narevim/thirdCategorySlice';
 import getSlidersSlice from './narevim/getSlidersSlice';
 import getMainProductsSlice from './narevim/getMainProductsSlice';
 import brandListSlice from './narevim/brandListSlice';
+import specialOfferSlice from './narevim/specialOfferSlice';
 
 const store = configureStore({
   reducer: {
     getSlidersSlice,
     getCategorySlice,
     secondCategorySlice,
+    thirdCategorySlice,
     getMainProductsSlice,
     brandListSlice,
+    specialOfferSlice,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });

@@ -1,0 +1,6 @@
+first categories 
+second categories
+third categories
+sliders
+mainProducts
+brands

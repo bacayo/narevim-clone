@@ -8,7 +8,7 @@ const CategoryCard = ({category, image_path, screenName}) => {
   const navigation = useNavigation();
 
   const onPress = () => {
-    navigation.navigate(screenName, {id: category.id});
+    navigation.navigate(screenName, {id: category.id, title: category.title});
   };
 
   return (

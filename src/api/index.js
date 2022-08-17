@@ -50,10 +50,32 @@ export const secondCategoriesAsync = createAsyncThunk(
   async data => {
     const params = new FormData();
     params.append('first_category_id', data.id);
-    console.log('00000000000000000000');
-    console.log(params);
-    console.log('00000000000000000000');
     const response = await axios.post('secondCategories/', params);
+    return response.data;
+  },
+);
+
+//* get third categories in category tab
+export const thirdCategoriesAsync = createAsyncThunk(
+  'thirdCategoriesSlice/thirdCategoriesAsync',
+  async data => {
+    const params = new FormData();
+    params.append('second_category_id', data.id);
+    const response = await axios.post('thirdCategories', params);
+    return response.data;
+  },
+);
+
+//* get special offer products when pressing image on homescreen
+export const specialOfferAsync = createAsyncThunk(
+  'specialOfferSlice/specialOfferAsync',
+  async data => {
+    const params = new FormData();
+    params.append('url_string', data.button_url);
+    params.append('per_page', 10);
+    params.append('page', 0);
+    params.append('sorting', 'ASC');
+    const response = await axios.post('getUrl', params);
     return response.data;
   },
 );

@@ -1,8 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {firstCategoriesAsync} from '../../api';
+import {thirdCategoriesAsync} from '../../api';
 
-const getCategorySlice = createSlice({
-  name: 'getCategorySlice',
+const thirdCategorySlice = createSlice({
+  name: 'thirdCategorySlice',
   initialState: {
     categories: undefined,
     isLoading: false,
@@ -12,20 +12,20 @@ const getCategorySlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [firstCategoriesAsync.pending]: state => {
+    [thirdCategoriesAsync.pending]: state => {
       state.isLoading = true;
     },
-    [firstCategoriesAsync.fulfilled]: (state, action) => {
+    [thirdCategoriesAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.categories = action.payload.data;
       state.status = action.payload.status;
       state.categoriesImagePath = action.payload.image_path;
     },
-    [firstCategoriesAsync.rejected]: (state, action) => {
+    [thirdCategoriesAsync.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     },
   },
 });
 
-export default getCategorySlice.reducer;
+export default thirdCategorySlice.reducer;

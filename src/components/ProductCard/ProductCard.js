@@ -3,17 +3,13 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './ProductCardStyles';
-import {useSelector} from 'react-redux';
-const ProductCard = ({product}) => {
-  const {mainProductsImgPath} = useSelector(
-    state => state.getMainProductsSlice,
-  );
 
+const ProductCard = ({product, image_path}) => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={{uri: mainProductsImgPath + product.img_url}}
+        source={{uri: image_path + product.img_url}}
       />
       <View style={styles.innerContainer}>
         <Text style={styles.brand}>{product.brand}</Text>

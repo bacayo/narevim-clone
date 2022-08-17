@@ -5,14 +5,16 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './screens/HomeScreen';
 import BasketScreen from './screens/BasketScreen';
-import CategoriesScreen from './screens/CategoriesScreen';
 import MyProfileScreen from './screens/MyProfileScreen';
+import CategoriesScreen from './screens/CategoriesScreen';
+import SecondCategories from './screens/SecondCategoriesScreen';
+import ThirdCategoriesScreen from './screens/ThirdCategoriesScreen';
+import SpecialOffer from './screens/SpecialOfferScreen';
 
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Colors from './constants/Colors/Colors';
 import Strings from './constants/Strings/Strings';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SecondCategories from './screens/SecondCategoriesScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -86,7 +88,25 @@ const Router = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="SecondCategories" component={SecondCategories} />
+        <Stack.Screen
+          name="SecondCategories"
+          component={SecondCategories}
+          options={({route}) => ({
+            headerTitleAlign: 'center',
+            headerTintColor: Colors.primaryColor,
+            headerTitle: route.params.title,
+          })}
+        />
+        <Stack.Screen
+          name="ThirdCategoriesScreen"
+          component={ThirdCategoriesScreen}
+          options={({route}) => ({
+            headerTitle: route.params.title,
+            headerTintColor: Colors.primaryColor,
+            headerTitleAlign: 'center',
+          })}
+        />
+        <Stack.Screen name="SpecialOffer" component={SpecialOffer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
