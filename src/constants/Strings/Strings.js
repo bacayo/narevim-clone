@@ -3,4 +3,6 @@ export default {
   homeScreen: 'Anasayfa',
   basket: 'Sepetim',
   account: 'Hesabım',
+  topDeals: 'Kampanyalı Ürünler',
+  sort: 'Sırala',
 };

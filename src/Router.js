@@ -10,6 +10,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import SecondCategories from './screens/SecondCategoriesScreen';
 import ThirdCategoriesScreen from './screens/ThirdCategoriesScreen';
 import SpecialOffer from './screens/SpecialOfferScreen';
+import ProductDetailScreen from './screens/ProductDetailScreen';
 
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Colors from './constants/Colors/Colors';
@@ -106,7 +107,23 @@ const Router = () => {
             headerTitleAlign: 'center',
           })}
         />
-        <Stack.Screen name="SpecialOffer" component={SpecialOffer} />
+        <Stack.Screen
+          name="SpecialOffer"
+          component={SpecialOffer}
+          options={{
+            headerTitle: Strings.topDeals,
+            headerTintColor: Colors.primaryColor,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="ProductDetailScreen"
+          component={ProductDetailScreen}
+          options={({route}) => ({
+            headerTitle: route.params.title,
+            headerTintColor: Colors.primaryColor,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

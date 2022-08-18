@@ -73,9 +73,20 @@ export const specialOfferAsync = createAsyncThunk(
     const params = new FormData();
     params.append('url_string', data.button_url);
     params.append('per_page', 10);
-    params.append('page', 0);
+    params.append('page', data.page);
     params.append('sorting', 'ASC');
     const response = await axios.post('getUrl', params);
+    return response.data;
+  },
+);
+
+//* get product detail
+export const getProductDetailAsync = createAsyncThunk(
+  'getProductDetailSlice/getProductDetailAsync',
+  async data => {
+    const params = new FormData();
+    params.append('product_id', data.id);
+    const response = await axios.post('productDetail', params);
     return response.data;
   },
 );

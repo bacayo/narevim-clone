@@ -1,12 +1,22 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Pressable} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './ProductCardStyles';
+import {useNavigation} from '@react-navigation/native';
 
 const ProductCard = ({product, image_path}) => {
+  const navigation = useNavigation();
+
+  const handleProductDetail = () => {
+    navigation.navigate('ProductDetailScreen', {
+      id: product.id,
+      title: product.title,
+    });
+  };
+
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={handleProductDetail}>
       <Image
         style={styles.image}
         source={{uri: image_path + product.img_url}}
@@ -29,7 +39,7 @@ const ProductCard = ({product, image_path}) => {
           <Text style={styles.btnTitle}>Ürün Detayi</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
