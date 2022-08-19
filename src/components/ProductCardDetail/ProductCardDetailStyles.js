@@ -4,6 +4,7 @@ import Colors from '../../constants/Colors/Colors';
 export default StyleSheet.create({
   container: {
     marginHorizontal: 10,
+    backgroundColor: Colors.white,
     // flex: 1,
   },
   innerContainer: {
@@ -29,12 +30,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    // position: 'absolute',
-    // bottom: 0,
-    // backgroundColor: 'cyan',
-    padding: 20,
-    borderWidth: 1,
-    borderColor: 'green',
+    padding: 15,
+    backgroundColor: '#ddd',
   },
   price: {
     fontSize: 18,

@@ -23,14 +23,11 @@ const ProductDetailScreen = props => {
 
   const RenderSwiper = () => {
     return (
-      <View style={{height: 500}}>
+      <View style={styles.swiperContainer}>
         {status === 'success' && (
           <Swiper>
             {images.map(image => (
-              <Image
-                style={{height: 500, resizeMode: 'contain'}}
-                source={{uri: image}}
-              />
+              <Image style={styles.image} source={{uri: image}} />
             ))}
           </Swiper>
         )}
@@ -39,16 +36,11 @@ const ProductDetailScreen = props => {
   };
 
   return (
-    <View style={{borderWidth: 1, borderColor: 'red', flex: 1}}>
+    <View style={styles.outherContainer}>
       <ScrollView style={styles.container}>
         <RenderSwiper />
         {status === 'success' && <ProductCardDetail product={item} />}
       </ScrollView>
-      {/* <View style={{borderWidth: 1, borderColor: 'green'}}>
-        <Text>{item?.price} TL</Text>
-        <Text>350 tl</Text>
-        <Text>Kalp logo</Text>
-      </View> */}
       {status === 'success' && <Footer product={item} />}
     </View>
   );
