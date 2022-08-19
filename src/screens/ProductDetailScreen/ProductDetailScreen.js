@@ -1,19 +1,19 @@
-import {View, Text} from 'react-native';
+import {View, Text, Image, FlatList, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
 import ProductCardDetail from '../../components/ProductCardDetail';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductDetailAsync} from '../../api';
+import {Footer} from '../../components/ProductCardDetail/ProductCardDetail';
 
 import styles from './ProductDetailScreenStyles';
 
+import Swiper from 'react-native-swiper';
+
 const ProductDetailScreen = props => {
   const {id} = props.route.params;
-  const {item, image_path, images, status} = useSelector(
+  const {item, images, status} = useSelector(
     state => state.getProductDetailSlice,
   );
-  if (status === 'success') {
-    console.log(images[0]);
-  }
 
   const dispatch = useDispatch();
 
@@ -21,15 +21,35 @@ const ProductDetailScreen = props => {
     dispatch(getProductDetailAsync({id}));
   }, [dispatch, id]);
 
+  const RenderSwiper = () => {
+    return (
+      <View style={{height: 500}}>
+        {status === 'success' && (
+          <Swiper>
+            {images.map(image => (
+              <Image
+                style={{height: 500, resizeMode: 'contain'}}
+                source={{uri: image}}
+              />
+            ))}
+          </Swiper>
+        )}
+      </View>
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      {status === 'success' && (
-        <ProductCardDetail
-          product={item}
-          image_path={image_path}
-          images={images[0]}
-        />
-      )}
+    <View style={{borderWidth: 1, borderColor: 'red', flex: 1}}>
+      <ScrollView style={styles.container}>
+        <RenderSwiper />
+        {status === 'success' && <ProductCardDetail product={item} />}
+      </ScrollView>
+      {/* <View style={{borderWidth: 1, borderColor: 'green'}}>
+        <Text>{item?.price} TL</Text>
+        <Text>350 tl</Text>
+        <Text>Kalp logo</Text>
+      </View> */}
+      {status === 'success' && <Footer product={item} />}
     </View>
   );
 };
