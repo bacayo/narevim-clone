@@ -1,4 +1,4 @@
-import {View, Text, Image, FlatList, ScrollView} from 'react-native';
+import {View, Image, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
 import ProductCardDetail from '../../components/ProductCardDetail';
 import {useDispatch, useSelector} from 'react-redux';
