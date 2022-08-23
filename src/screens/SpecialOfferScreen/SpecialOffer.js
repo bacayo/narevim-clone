@@ -11,9 +11,6 @@ import Strings from '../../constants/Strings/Strings';
 
 const SpecialOffer = props => {
   const button_url = props.route.params.button_url;
-  console.log(button_url);
-
-  const [page, setPage] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -21,9 +18,16 @@ const SpecialOffer = props => {
     state => state.specialOfferSlice,
   );
 
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState(items);
+
   const renderSpecialOffer = ({item}) => (
     <ProductCard product={item} image_path={speacialOfferImagePath} />
   );
+
+  console.log(items);
+  console.log('===================');
+  console.log(data);
 
   useEffect(() => {
     dispatch(specialOfferAsync({button_url, page}));
@@ -36,17 +40,17 @@ const SpecialOffer = props => {
         <Text style={styles.sortText}>{Strings.sort}</Text>
       </Pressable>
       <View style={styles.seperatorLine} />
-
       <FlatList
         style={styles.list}
-        data={items}
+        data={data === undefined ? items : data}
         renderItem={renderSpecialOffer}
         numColumns={2}
         keyExtractor={(item, index) => index.toString()}
         onEndReached={() => {
           setPage(page + 1);
-          console.log(page);
+          setData([...items, ...data]);
         }}
+        onEndReachedThreshold={0.5}
         refreshing
       />
     </View>

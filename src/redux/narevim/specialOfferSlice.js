@@ -5,9 +5,11 @@ const specialOfferSlice = createSlice({
   name: 'specialOfferSlice',
   initialState: {
     items: undefined,
+    moreItems: undefined,
     isLoading: false,
     speacialOfferImagePath: undefined,
     error: null,
+    status: undefined,
   },
   reducers: {},
   extraReducers: {
@@ -18,7 +20,9 @@ const specialOfferSlice = createSlice({
     [specialOfferAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.items = action.payload.data;
+      state.moreItems = action.payload.data;
       state.speacialOfferImagePath = action.payload.image_path;
+      state.status = action.payload.status;
     },
 
     [specialOfferAsync.rejected]: (state, action) => {

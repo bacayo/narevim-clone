@@ -4,12 +4,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import BasketScreen from './screens/BasketScreen';
 import MyProfileScreen from './screens/MyProfileScreen';
-
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Colors from './constants/Colors/Colors';
-
 import CategoriesStack from './navigation/CategoriesStack';
 import HomeStack from './navigation/HomeStack';
+import Strings from './constants/Strings/Strings';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,15 +42,32 @@ const Router = () => {
           component={HomeStack}
           options={{
             headerShown: false,
+            title: Strings.homeScreen,
           }}
         />
         <Tab.Screen
           name="CategoriesStack"
           component={CategoriesStack}
-          options={{headerShown: false}}
+          options={{
+            headerShown: false,
+            title: Strings.categories,
+          }}
         />
-        <Tab.Screen name="BasketScreen" component={BasketScreen} />
-        <Tab.Screen name="MyProfileScreen" component={MyProfileScreen} />
+        <Tab.Screen
+          name="BasketScreen"
+          component={BasketScreen}
+          options={{
+            title: Strings.basket,
+          }}
+        />
+        <Tab.Screen
+          name="MyProfileScreen"
+          component={MyProfileScreen}
+          options={{
+            title: Strings.account,
+            headerShown: false,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
