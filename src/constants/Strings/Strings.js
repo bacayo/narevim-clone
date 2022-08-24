@@ -5,4 +5,12 @@ export default {
   account: 'Hesabım',
   topDeals: 'Kampanyalı Ürünler',
   sort: 'Sırala',
+  contackInfo: 'İletişim Bilgileri',
+  firstName: 'Ad',
+  surname: 'Soyad',
+  phone: 'Telefon',
+  emailAndPassword: 'E-posta & Şifre',
+  email: 'E-Posta',
+  password: 'Şifre',
+  save: 'Kaydet',
 };

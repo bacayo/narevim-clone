@@ -90,3 +90,16 @@ export const getProductDetailAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* login
+
+export const loginAsync = createAsyncThunk(
+  'loginSlice/loginAsync',
+  async data => {
+    const params = new FormData();
+    params.append('email', data.email);
+    params.append('password', data.password);
+    const response = await axios.post('login', params);
+    return response.data;
+  },
+);

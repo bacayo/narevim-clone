@@ -13,6 +13,8 @@ const TextInputCard = ({
   stroke,
   keyboardType,
   secureTextEntry,
+  value,
+  onChangeText,
 }) => {
   return (
     <View style={styles.container}>
@@ -23,6 +25,8 @@ const TextInputCard = ({
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
         selectionColor={Colors.primaryColor}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );

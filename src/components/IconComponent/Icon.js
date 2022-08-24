@@ -1,9 +1,11 @@
-import {Key, User} from '.';
+import {Key, Mail, Phone, User} from '.';
 import React from 'react';
 
 const icon = {
   key: Key,
   user: User,
+  phone: Phone,
+  mail: Mail,
 };
 
 export default function IconSvg(props) {
