@@ -1,4 +1,4 @@
-import {Key, Mail, Phone, User} from '.';
+import {Key, Mail, Phone, User, ArrowRight} from '.';
 import React from 'react';
 
 const icon = {
@@ -6,6 +6,7 @@ const icon = {
   user: User,
   phone: Phone,
   mail: Mail,
+  arrowRight: ArrowRight,
 };
 
 export default function IconSvg(props) {
