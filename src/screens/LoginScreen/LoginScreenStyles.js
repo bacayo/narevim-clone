@@ -5,8 +5,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    borderWidth: 1,
-    borderColor: 'green',
   },
   logo: {
     tintColor: Colors.primaryColor,

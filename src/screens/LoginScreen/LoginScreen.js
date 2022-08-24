@@ -1,15 +1,16 @@
-import {View, Image, TouchableOpacity, Text} from 'react-native';
-import React, {useState} from 'react';
+import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
-import styles from './MyProfileScreenStyles';
+import styles from './LoginScreenStyles';
 import TextInputCard from '../../components/TextInputCard/TextInputCard';
 import Colors from '../../constants/Colors/Colors';
 import Strings from '../../constants/Strings/Strings';
 import {loginAsync} from '../../api';
+import {resetLogin} from '../../redux/narevim/loginSlice';
 
-const MyProfileScreen = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
   const {loginStatus} = useSelector(state => state.loginSlice);
 
@@ -21,11 +22,19 @@ const MyProfileScreen = () => {
 
   const handleLogin = () => {
     dispatch(loginAsync({email, password}));
-    loginStatus === 'success' && navigation.navigate('SomeScreen');
   };
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (loginStatus === 'success') {
+      navigation.navigate('AccountScreen');
+    } else if (loginStatus === 'error') {
+      dispatch(resetLogin);
+      Alert.alert('Email yada parola yanlış');
+    }
+  }, [dispatch, loginStatus, navigation]);
 
   return (
     <View style={styles.container}>
@@ -78,4 +87,4 @@ const MyProfileScreen = () => {
   );
 };
 
-export default MyProfileScreen;
+export default LoginScreen;

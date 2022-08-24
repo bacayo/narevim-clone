@@ -9,7 +9,14 @@ const loginSlice = createSlice({
     loginError: null,
     loginStatus: undefined,
   },
-  reducers: {},
+  reducers: {
+    resetLogin: state => {
+      state.user = undefined;
+      state.loginIsLoading = false;
+      state.loginError = null;
+      state.loginStatus = undefined;
+    },
+  },
   extraReducers: {
     [loginAsync.pending]: state => {
       state.loginIsLoading = true;
@@ -27,3 +34,4 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
+export const {resetLogin} = loginSlice.actions;
