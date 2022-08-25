@@ -14,20 +14,4 @@ export default StyleSheet.create({
     marginTop: 40,
     alignSelf: 'center',
   },
-  listContainer: {
-    padding: 10,
-    marginHorizontal: 10,
-    marginTop: 30,
-  },
-  line: {
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-  },
-  press: {
-    flexDirection: 'row',
-  },
-  listTitle: {
-    flex: 1,
-    color: Colors.black,
-  },
 });

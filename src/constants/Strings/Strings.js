@@ -13,4 +13,10 @@ export default {
   email: 'E-Posta',
   password: 'Şifre',
   save: 'Kaydet',
+  order: 'Siparişlerim',
+  favorites: 'Favorilerim',
+  address: 'Adreslerim',
+  userInfo: 'Kullanıcı Bilgileri',
+  changePassword: 'Şifre Değiştir',
+  logout: 'Çıkış yap',
 };

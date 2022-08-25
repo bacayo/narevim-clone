@@ -1,20 +1,20 @@
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Image} from 'react-native';
 import React from 'react';
 
 import styles from './AccountScreenStyles';
-import IconSvg from '../../components/IconComponent/Icon';
+import ListCard from '../../components/ListCard/ListCard';
+import Strings from '../../constants/Strings/Strings';
 
 const AccountScreen = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/narlogo.png')} />
-      <View style={styles.listContainer}>
-        <Pressable style={styles.press}>
-          <Text style={styles.listTitle}>Siparişlerim</Text>
-          <IconSvg name="arrowRight" width={30} height={30} stroke={'black'} />
-        </Pressable>
-        <View style={styles.line} />
-      </View>
+      <ListCard title={Strings.order} iconName={'order'} />
+      <ListCard title={Strings.favorites} iconName={'heart'} />
+      <ListCard title={Strings.address} iconName={'address'} />
+      <ListCard title={Strings.userInfo} iconName={'user'} />
+      <ListCard title={Strings.changePassword} iconName={'key'} />
+      <ListCard title={Strings.logout} iconName={'logout'} />
     </View>
   );
 };
