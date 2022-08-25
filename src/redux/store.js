@@ -10,6 +10,8 @@ import brandListSlice from './narevim/brandListSlice';
 import specialOfferSlice from './narevim/specialOfferSlice';
 import getProductDetailSlice from './narevim/getProductDetailSlice';
 import loginSlice from './narevim/loginSlice';
+import addressListSlice from './narevim/addressListSlice';
+import logoutSlice from './narevim/logoutSlice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +24,8 @@ const store = configureStore({
     specialOfferSlice,
     getProductDetailSlice,
     loginSlice,
+    addressListSlice,
+    logoutSlice,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });

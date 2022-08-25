@@ -1,20 +1,51 @@
 import {View, Image} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import styles from './AccountScreenStyles';
 import ListCard from '../../components/ListCard/ListCard';
 import Strings from '../../constants/Strings/Strings';
+import {logoutAsync} from '../../api';
+import {resetLogin} from '../../redux/narevim/loginSlice';
 
 const AccountScreen = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {logoutStatus} = useSelector(state => state.logoutSlice);
+
+  //* navigate to addresses screen
+  const navigateAddressScreen = () => {
+    navigation.navigate('AddressScreen');
+  };
+
+  //*handle logout
+  const handleLogout = () => {
+    dispatch(resetLogin());
+    dispatch(logoutAsync());
+  };
+
+  useEffect(() => {
+    logoutStatus === 'success' && navigation.goBack();
+  }, [navigation, logoutStatus]);
+
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/narlogo.png')} />
       <ListCard title={Strings.order} iconName={'order'} />
       <ListCard title={Strings.favorites} iconName={'heart'} />
-      <ListCard title={Strings.address} iconName={'address'} />
+      <ListCard
+        title={Strings.address}
+        iconName={'address'}
+        onPress={navigateAddressScreen}
+      />
       <ListCard title={Strings.userInfo} iconName={'user'} />
       <ListCard title={Strings.changePassword} iconName={'key'} />
-      <ListCard title={Strings.logout} iconName={'logout'} />
+      <ListCard
+        title={Strings.logout}
+        iconName={'logout'}
+        onPress={handleLogout}
+      />
     </View>
   );
 };

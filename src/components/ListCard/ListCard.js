@@ -4,10 +4,10 @@ import React from 'react';
 import IconSvg from '../IconComponent/Icon';
 import styles from './ListCardStyles';
 
-const ListCard = ({title, iconName}) => {
+const ListCard = ({title, iconName, onPress}) => {
   return (
     <View style={styles.listContainer}>
-      <Pressable style={styles.press}>
+      <Pressable style={styles.press} onPress={onPress}>
         <IconSvg
           style={styles.icon}
           name={iconName}

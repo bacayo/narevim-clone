@@ -92,7 +92,6 @@ export const getProductDetailAsync = createAsyncThunk(
 );
 
 //* login
-
 export const loginAsync = createAsyncThunk(
   'loginSlice/loginAsync',
   async data => {
@@ -100,6 +99,24 @@ export const loginAsync = createAsyncThunk(
     params.append('email', data.email);
     params.append('password', data.password);
     const response = await axios.post('login', params);
+    return response.data;
+  },
+);
+
+//*logout
+export const logoutAsync = createAsyncThunk(
+  'logoutSlice/logoutAsync',
+  async () => {
+    const response = await axios.get('logout');
+    return response.data;
+  },
+);
+
+//* get address list
+export const addressListAsync = createAsyncThunk(
+  'addressListSlice/addressListAsync',
+  async () => {
+    const response = await axios.get('address');
     return response.data;
   },
 );
