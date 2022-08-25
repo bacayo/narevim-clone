@@ -10,6 +10,8 @@ import RegisterScreen from '../screens/RegisterScreen';
 import AccountScreen from '../screens/AccountScreen';
 import AddressScreen from '../screens/AddressScreen';
 import AddAddresScreen from '../screens/AddAddressScreen';
+import FavoritesScreen from '../screens/FavoritesScreen';
+import UserInfoScreen from '../screens/UserInfoScreen';
 
 const ProfileStack = () => {
   const Stack = createNativeStackNavigator();
@@ -67,7 +69,16 @@ const ProfileStack = () => {
             name="AddAddressScreen"
             component={AddAddresScreen}
             options={{
-              headerTitle: 'Adres Ekle',
+              title: 'Adres Ekle',
+              headerTintColor: Colors.primaryColor,
+            }}
+          />
+          <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
+          <Stack.Screen
+            name="UserInfoScreen"
+            component={UserInfoScreen}
+            options={{
+              title: 'Kullanıcı Bilgileri',
               headerTintColor: Colors.primaryColor,
             }}
           />

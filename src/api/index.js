@@ -120,3 +120,12 @@ export const addressListAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* get member information
+export const memberInfoAsync = createAsyncThunk(
+  'memberInfoSlice/memberInfoAsync',
+  async () => {
+    const response = await axios.get('memberInfo');
+    return response.data;
+  },
+);

@@ -25,6 +25,16 @@ const AccountScreen = () => {
     dispatch(logoutAsync());
   };
 
+  //* navigate to favorites screen
+  const navigateFavorites = () => {
+    navigation.navigate('FavoritesScreen');
+  };
+
+  //* navigate to user info screen
+  const handleUserInfo = () => {
+    navigation.navigate('UserInfoScreen');
+  };
+
   useEffect(() => {
     logoutStatus === 'success' && navigation.goBack();
   }, [navigation, logoutStatus]);
@@ -33,13 +43,21 @@ const AccountScreen = () => {
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/narlogo.png')} />
       <ListCard title={Strings.order} iconName={'order'} />
-      <ListCard title={Strings.favorites} iconName={'heart'} />
+      <ListCard
+        title={Strings.favorites}
+        iconName={'heart'}
+        onPress={navigateFavorites}
+      />
       <ListCard
         title={Strings.address}
         iconName={'address'}
         onPress={navigateAddressScreen}
       />
-      <ListCard title={Strings.userInfo} iconName={'user'} />
+      <ListCard
+        title={Strings.userInfo}
+        iconName={'user'}
+        onPress={handleUserInfo}
+      />
       <ListCard title={Strings.changePassword} iconName={'key'} />
       <ListCard
         title={Strings.logout}
