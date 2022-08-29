@@ -8,6 +8,8 @@ import {
   Address,
   Heart,
   LogOut,
+  Location,
+  Home,
 } from '.';
 import React from 'react';
 
@@ -21,6 +23,8 @@ const icon = {
   address: Address,
   heart: Heart,
   logout: LogOut,
+  location: Location,
+  home: Home,
 };
 
 export default function IconSvg(props) {

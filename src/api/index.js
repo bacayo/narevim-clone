@@ -129,3 +129,11 @@ export const memberInfoAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+export const getCityAsync = createAsyncThunk(
+  'getCitySlice/getCityAsync',
+  async () => {
+    const response = await axios.get('city');
+    return response.data;
+  },
+);
