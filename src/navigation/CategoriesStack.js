@@ -4,6 +4,7 @@ import React from 'react';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import SecondCategories from '../screens/SecondCategoriesScreen/SecondCategories';
 import ThirdCategoriesScreen from '../screens/ThirdCategoriesScreen';
+import ProductsScreen from '../screens/ProductsScreen';
 import Strings from '../constants/Strings/Strings';
 import Colors from '../constants/Colors/Colors';
 
@@ -33,6 +34,14 @@ const CategoriesStack = () => {
       <Stack.Screen
         name="ThirdCategoriesScreen"
         component={ThirdCategoriesScreen}
+        options={({route}) => ({
+          headerTitle: route.params.title,
+          headerTintColor: Colors.primaryColor,
+        })}
+      />
+      <Stack.Screen
+        name="ProductsScreen"
+        component={ProductsScreen}
         options={({route}) => ({
           headerTitle: route.params.title,
           headerTintColor: Colors.primaryColor,

@@ -12,7 +12,6 @@ export const getSlidersAsync = createAsyncThunk(
   'getSlidersSlice/getSlidersAsync',
   async () => {
     const response = await axios.get('sliders');
-    // console.log(response.data);
     return response.data;
   },
 );
@@ -80,6 +79,23 @@ export const specialOfferAsync = createAsyncThunk(
   },
 );
 
+//* get products from categories
+export const productsAsync = createAsyncThunk(
+  'productsSlice/productsAsync',
+
+  async (data, url) => {
+    const params = new FormData();
+    params.append('url_string', `https://narevim.com/${data.url}-c-${data.id}`);
+    params.append('per_page', 10);
+    params.append('page', data.page);
+    params.append('sorting', 'ASC');
+
+    const response = await axios.post('getUrl', params);
+
+    return response.data;
+  },
+);
+
 //* get product detail
 export const getProductDetailAsync = createAsyncThunk(
   'getProductDetailSlice/getProductDetailAsync',
@@ -130,10 +146,22 @@ export const memberInfoAsync = createAsyncThunk(
   },
 );
 
+//* get cities
 export const getCityAsync = createAsyncThunk(
   'getCitySlice/getCityAsync',
   async () => {
     const response = await axios.get('city');
+    return response.data;
+  },
+);
+
+//* get towns
+export const getTownAsync = createAsyncThunk(
+  'getTownSlice/getTownAsync',
+  async data => {
+    const params = new FormData();
+    params.append('city_id', data.id);
+    const response = await axios.post('town', params);
     return response.data;
   },
 );

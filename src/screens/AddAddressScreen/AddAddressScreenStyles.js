@@ -37,4 +37,26 @@ export default StyleSheet.create({
     padding: 5,
     marginLeft: 40,
   },
+  cityCard: {
+    padding: 10,
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: '400',
+  },
+  cityModalList: {
+    margin: 20,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+  },
+  cityTitle: {
+    color: Colors.black,
+    padding: 10,
+    marginLeft: 20,
+    flex: 1,
+  },
+  cityContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    alignItems: 'center',
+  },
 });

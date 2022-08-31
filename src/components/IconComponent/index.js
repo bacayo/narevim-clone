@@ -1,5 +1,6 @@
 export {default as Address} from './Address';
 export {default as ArrowRight} from './ArrowRight';
+export {default as DownArrow} from './DownArrow';
 export {default as Heart} from './Heart';
 export {default as Home} from './Home';
 export {default as Key} from './Key';

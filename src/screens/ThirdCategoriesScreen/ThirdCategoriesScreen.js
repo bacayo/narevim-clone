@@ -14,7 +14,11 @@ const ThirdCategoriesScreen = props => {
   );
 
   const renderThirdCategory = ({item}) => (
-    <CategoryCard category={item} image_path={categoriesImagePath} />
+    <CategoryCard
+      category={item}
+      image_path={categoriesImagePath}
+      screenName={'ProductsScreen'}
+    />
   );
 
   useEffect(() => {

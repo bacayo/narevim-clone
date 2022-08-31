@@ -7,26 +7,29 @@ import Colors from '../../constants/Colors/Colors';
 import Strings from '../../constants/Strings/Strings';
 import styles from './AddAddressScreenStyles';
 import IconSvg from '../../components/IconComponent/Icon';
-import {getCityAsync} from '../../api';
+import {getCityAsync, getTownAsync} from '../../api';
 
+// global id for getting data array index
 let id = 1;
 
 const CityComponent = ({city, modalVisible, setModalVisible}) => {
   const handleCity = () => {
+    // assigning city id to id
     id = city.id;
+    // close modal
     setModalVisible(!modalVisible);
   };
 
   return (
     <Pressable onPress={handleCity}>
-      <Text style={{padding: 10, color: '#000'}}>{city.title}</Text>
+      <Text style={styles.cityCard}>{city.title}</Text>
     </Pressable>
   );
 };
 
+// modal for listing cities
 const ModalComponent = ({modalVisible, setModalVisible}) => {
   const {city} = useSelector(state => state.getCitySlice);
-
   const renderCity = ({item}) => (
     <CityComponent
       city={item}
@@ -36,8 +39,7 @@ const ModalComponent = ({modalVisible, setModalVisible}) => {
   );
 
   return (
-    // <View style={styles.centeredView}>
-    <View style={null}>
+    <View>
       <Modal
         animationType="slide"
         transparent={true}
@@ -46,22 +48,13 @@ const ModalComponent = ({modalVisible, setModalVisible}) => {
           Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
-        <View style={styles.centeredView}>
-          <View
-            style={{
-              borderWidth: 1,
-              borderColor: 'red',
-              margin: 20,
-              backgroundColor: '#fff',
-              justifyContent: 'center',
-              // alignItems: 'center',
-            }}>
-            {/* <Text style={styles.modalText}>Hello World!</Text> */}
+        <View>
+          <View style={styles.cityModalList}>
             <FlatList data={city} renderItem={renderCity} />
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text />
             </Pressable>
           </View>
         </View>
@@ -72,19 +65,22 @@ const ModalComponent = ({modalVisible, setModalVisible}) => {
 
 const AddAddressScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [myId, setMyId] = useState(id);
 
   const dispatch = useDispatch();
   const {city} = useSelector(state => state.getCitySlice);
 
-  const onPress = () => {
+  const selectCity = () => {
     setModalVisible(true);
+    setMyId(myId);
     dispatch(getCityAsync());
-    console.log(id);
   };
 
   useEffect(() => {
     dispatch(getCityAsync());
-  }, [dispatch]);
+    dispatch(getTownAsync({id}));
+    console.log(myId);
+  }, [dispatch, myId]);
 
   return (
     <View style={styles.container}>
@@ -124,10 +120,16 @@ const AddAddressScreen = () => {
         setModalVisible={setModalVisible}
       />
       {/* modal bitiyor  */}
-      <Pressable onPress={onPress}>
-        <Text style={{color: Colors.black, padding: 10, marginLeft: 10}}>
+      <Pressable style={styles.cityContainer} onPress={selectCity}>
+        <Text style={styles.cityTitle}>
           {city === undefined ? '' : city[id - 1].title}
         </Text>
+        <IconSvg
+          name="downArrow"
+          width={20}
+          height={20}
+          stroke={Colors.black}
+        />
       </Pressable>
     </View>
   );

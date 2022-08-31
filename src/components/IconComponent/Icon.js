@@ -10,6 +10,7 @@ import {
   LogOut,
   Location,
   Home,
+  DownArrow,
 } from '.';
 import React from 'react';
 
@@ -25,6 +26,7 @@ const icon = {
   logout: LogOut,
   location: Location,
   home: Home,
+  downArrow: DownArrow,
 };
 
 export default function IconSvg(props) {
