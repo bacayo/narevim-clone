@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, Pressable} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -35,9 +35,9 @@ const ProductCard = ({product, image_path}) => {
           <Text style={styles.review}>({product.review})</Text>
         </View>
         <Text style={styles.price}>{product.price} TL</Text>
-        <TouchableOpacity style={styles.btn}>
+        <View style={styles.btn}>
           <Text style={styles.btnTitle}>Ürün Detayi</Text>
-        </TouchableOpacity>
+        </View>
       </View>
     </Pressable>
   );

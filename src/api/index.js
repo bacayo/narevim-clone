@@ -165,3 +165,23 @@ export const getTownAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* add to basket
+export const addToBasketAsync = createAsyncThunk(
+  'addToBasketAsync',
+  async data => {
+    const params = new FormData();
+    params.append('product_id', data.id);
+    params.append('qty', 1);
+    const response = await axios.post('addBasket', params);
+    return response.data;
+  },
+);
+//* get basket items
+export const getBasketAsync = createAsyncThunk(
+  'getBasketSlice/getBasketAsync',
+  async () => {
+    const response = await axios.get('getBasket');
+    return response.data;
+  },
+);

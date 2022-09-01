@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {productsAsync} from '../../api';
 import ProductCard from '../../components/ProductCard';
-import {resetProducts} from '../../redux/narevim/productsSlice';
 import styles from './ProductsScreenStyles';
 
 const ProductsScreen = props => {
@@ -34,7 +33,9 @@ const ProductsScreen = props => {
         keyExtractor={(item, index) => String(index)}
         onEndReached={() => {
           setPage(page + 1);
+          console.log('hello');
         }}
+        onEndReachedThreshold={0.5}
         ListFooterComponent={
           !productsIsLoading && (
             <ActivityIndicator size="small" color="#0000ff" />

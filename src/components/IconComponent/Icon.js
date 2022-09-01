@@ -12,6 +12,9 @@ import {
   Home,
   DownArrow,
   Back,
+  Bin,
+  Minus,
+  Plus,
 } from '.';
 import React from 'react';
 
@@ -29,6 +32,9 @@ const icon = {
   home: Home,
   downArrow: DownArrow,
   back: Back,
+  bin: Bin,
+  minus: Minus,
+  plus: Plus,
 };
 
 export default function IconSvg(props) {
@@ -38,7 +44,7 @@ export default function IconSvg(props) {
       width={props.width}
       height={props.height}
       stroke={props.stroke}
-      onPress={props.onPress}
+      // onPress={props.onPress}
     />
   );
 }
