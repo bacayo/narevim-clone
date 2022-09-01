@@ -21,8 +21,6 @@ const ProductsScreen = props => {
   );
 
   useEffect(() => {
-    // dispatch(resetProducts());
-
     dispatch(productsAsync({url, id, page}));
   }, [dispatch, page, id, url]);
 
@@ -32,8 +30,8 @@ const ProductsScreen = props => {
         data={products}
         renderItem={renderProducts}
         numColumns={2}
-        key={'_'}
-        keyExtractor={item => item.id}
+        // key={'_'}
+        keyExtractor={(item, index) => String(index)}
         onEndReached={() => {
           setPage(page + 1);
         }}

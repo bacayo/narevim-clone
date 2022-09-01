@@ -11,6 +11,7 @@ import {
   Location,
   Home,
   DownArrow,
+  Back,
 } from '.';
 import React from 'react';
 
@@ -27,11 +28,17 @@ const icon = {
   location: Location,
   home: Home,
   downArrow: DownArrow,
+  back: Back,
 };
 
 export default function IconSvg(props) {
   const Icon = icon[props.name];
   return (
-    <Icon width={props.width} height={props.height} stroke={props.stroke} />
+    <Icon
+      width={props.width}
+      height={props.height}
+      stroke={props.stroke}
+      onPress={props.onPress}
+    />
   );
 }

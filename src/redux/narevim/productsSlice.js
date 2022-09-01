@@ -13,7 +13,7 @@ const productsSlice = createSlice({
   },
   reducers: {
     resetProducts: (state, action) => {
-      state.products = undefined;
+      state.products = [];
       state.productsImagePath = undefined;
       state.productStatus = undefined;
     },
