@@ -9,6 +9,8 @@ const getBasketSlice = createSlice({
     basket: undefined,
     error: null,
     status: undefined,
+    basketLength: undefined,
+    total: undefined,
   },
   extraReducers: {
     [getBasketAsync.pending]: state => {
@@ -17,6 +19,8 @@ const getBasketSlice = createSlice({
     [getBasketAsync.fulfilled]: (state, action) => {
       state.basketIsLoading = false;
       state.basket = action.payload.data;
+      state.basketLength = action.payload.data.length;
+      state.total = action.payload.total;
     },
     [getBasketAsync.rejected]: (state, action) => {
       state.basketIsLoading = false;

@@ -12,7 +12,6 @@ export const Footer = ({product}) => {
   const dispatch = useDispatch();
 
   const addToBasket = () => {
-    console.log(product.id);
     dispatch(addToBasketAsync({id: product.id}));
     navigation.navigate('BasketScreen');
   };

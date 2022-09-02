@@ -169,11 +169,12 @@ export const getTownAsync = createAsyncThunk(
 //* add to basket
 export const addToBasketAsync = createAsyncThunk(
   'addToBasketAsync',
-  async data => {
+  async (data, thunkAPI) => {
     const params = new FormData();
     params.append('product_id', data.id);
     params.append('qty', 1);
     const response = await axios.post('addBasket', params);
+    thunkAPI.dispatch(getBasketAsync());
     return response.data;
   },
 );
@@ -182,6 +183,30 @@ export const getBasketAsync = createAsyncThunk(
   'getBasketSlice/getBasketAsync',
   async () => {
     const response = await axios.get('getBasket');
+    return response.data;
+  },
+);
+
+//* remove item from basket
+export const removeFromCartAsync = createAsyncThunk(
+  'removeFromCartAsync',
+  async (data, thunkAPI) => {
+    const params = new FormData();
+    params.append('rowID', data.id);
+    const response = await axios.post('removeFromCart', params);
+    thunkAPI.dispatch(getBasketAsync());
+    return response.data;
+  },
+);
+//* update basket
+export const updateCartAsync = createAsyncThunk(
+  'updateCartAsync',
+  async (data, thunkAPI) => {
+    const params = new FormData();
+    params.append('rowID', data.id);
+    params.append('qty', data.qty);
+    const response = await axios.post('updateCart', params);
+    thunkAPI.dispatch(getBasketAsync());
     return response.data;
   },
 );

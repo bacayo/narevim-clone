@@ -44,7 +44,7 @@ export default function IconSvg(props) {
       width={props.width}
       height={props.height}
       stroke={props.stroke}
-      // onPress={props.onPress}
+      onPress={props.onPress}
     />
   );
 }

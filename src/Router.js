@@ -9,6 +9,7 @@ import Strings from './constants/Strings/Strings';
 import CategoriesStack from './navigation/CategoriesStack';
 import HomeStack from './navigation/HomeStack';
 import ProfileStack from './navigation/ProfileStack';
+import BasketStack from './navigation/BasketStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,7 @@ const Router = () => {
               iconName = 'home';
             } else if (route.name === 'CategoriesStack') {
               iconName = 'category';
-            } else if (route.name === 'BasketScreen') {
+            } else if (route.name === 'BasketStack') {
               iconName = 'shopping-basket';
             } else if (route.name === 'ProfileStack') {
               iconName = 'account-circle';
@@ -52,8 +53,8 @@ const Router = () => {
           }}
         />
         <Tab.Screen
-          name="BasketScreen"
-          component={BasketScreen}
+          name="BasketStack"
+          component={BasketStack}
           options={{
             title: Strings.basket,
           }}
