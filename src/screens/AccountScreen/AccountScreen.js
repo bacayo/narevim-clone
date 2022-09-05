@@ -8,6 +8,7 @@ import ListCard from '../../components/ListCard/ListCard';
 import Strings from '../../constants/Strings/Strings';
 import {logoutAsync} from '../../api';
 import {resetLogin} from '../../redux/narevim/loginSlice';
+import StringScreens from '../../constants/Strings/StringScreens';
 
 const AccountScreen = () => {
   const navigation = useNavigation();
@@ -35,6 +36,11 @@ const AccountScreen = () => {
     navigation.navigate('UserInfoScreen');
   };
 
+  //*navigate to recover password screen
+  const changePassword = () => {
+    navigation.navigate(StringScreens.changePasswordScreen);
+  };
+
   useEffect(() => {
     logoutStatus === 'success' && navigation.goBack();
   }, [navigation, logoutStatus]);
@@ -58,7 +64,11 @@ const AccountScreen = () => {
         iconName={'user'}
         onPress={handleUserInfo}
       />
-      <ListCard title={Strings.changePassword} iconName={'key'} />
+      <ListCard
+        title={Strings.changePassword}
+        iconName={'key'}
+        onPress={changePassword}
+      />
       <ListCard
         title={Strings.logout}
         iconName={'logout'}

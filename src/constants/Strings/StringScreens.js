@@ -6,4 +6,5 @@ export default {
   addAddressScreen: 'AddAddressScreen',
   favoritesScreen: 'FavoritesScreen',
   userInfoScreen: 'UserInfoScreen',
+  changePasswordScreen: 'ChangePasswordScreen',
 };

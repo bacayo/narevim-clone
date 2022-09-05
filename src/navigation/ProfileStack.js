@@ -12,6 +12,7 @@ import AddressScreen from '../screens/AddressScreen';
 import AddAddresScreen from '../screens/AddAddressScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import UserInfoScreen from '../screens/UserInfoScreen';
+import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 import {getCityAsync, getTownAsync} from '../api';
 import Strings from '../constants/Strings/Strings';
 import StringScreens from '../constants/Strings/StringScreens';
@@ -91,6 +92,14 @@ const ProfileStack = () => {
             component={UserInfoScreen}
             options={{
               title: Strings.userInfo,
+              headerTintColor: Colors.primaryColor,
+            }}
+          />
+          <Stack.Screen
+            name={StringScreens.changePasswordScreen}
+            component={ChangePasswordScreen}
+            options={{
+              title: Strings.forgotPassword,
               headerTintColor: Colors.primaryColor,
             }}
           />

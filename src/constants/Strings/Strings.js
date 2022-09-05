@@ -20,4 +20,5 @@ export default {
   changePassword: 'Şifre Değiştir',
   logout: 'Çıkış yap',
   favoriteProducts: 'Favori Ürünlerim',
+  forgotPassword: 'Şifremi Unuttum',
 };
