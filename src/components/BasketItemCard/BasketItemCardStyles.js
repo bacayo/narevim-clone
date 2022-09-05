@@ -72,4 +72,7 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
   },
+  imgBtn: {
+    flex: 1,
+  },
 });

@@ -1,13 +1,15 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, Pressable} from 'react-native';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 import IconSvg from '../IconComponent/Icon';
 import styles from './BasketItemCardStyles';
 import {removeFromCartAsync, updateCartAsync, getBasketAsync} from '../../api';
-import {useDispatch} from 'react-redux';
 
 const BasketItemCard = ({product, onPress}) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const deleteItem = () => {
     console.log(product.rowid);
@@ -23,6 +25,13 @@ const BasketItemCard = ({product, onPress}) => {
     dispatch(updateCartAsync({id: product.rowid, qty: product.qty + 1}));
   };
 
+  const handleProductDetail = () => {
+    navigation.navigate('ProductDetailScreen', {
+      id: product.id,
+      title: product.title,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -36,7 +45,9 @@ const BasketItemCard = ({product, onPress}) => {
         />
       </View>
       <View style={styles.innerContainer}>
-        <Image style={styles.productImg} source={{uri: product.img_url}} />
+        <Pressable style={styles.imgBtn} onPress={handleProductDetail}>
+          <Image style={styles.productImg} source={{uri: product.img_url}} />
+        </Pressable>
         <View style={styles.bottomContainer}>
           <Text style={styles.productTitle}>{product.title}</Text>
           <View style={styles.quantityContainer}>
