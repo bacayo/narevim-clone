@@ -5,7 +5,7 @@ import {getCityAsync} from '../../api';
 const getCitySlice = createSlice({
   name: 'getCitySlice',
   initialState: {
-    city: undefined,
+    city: [],
     cityIsLoading: false,
     error: null,
     cityStatus: undefined,

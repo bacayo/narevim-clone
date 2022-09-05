@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+
 import Colors from '../../constants/Colors/Colors';
 
 export default StyleSheet.create({
@@ -17,6 +18,7 @@ export default StyleSheet.create({
   line: {
     borderWidth: 1,
     borderColor: '#e0e0e0',
+    marginVertical: 5,
   },
   bottomHeaderTitle: {
     flexDirection: 'row',
@@ -58,5 +60,36 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 20,
     alignItems: 'center',
+  },
+  cityModal: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 5,
+    borderRadius: 5,
+  },
+  saveBtn: {
+    backgroundColor: Colors.primaryColor,
+    borderRadius: 5,
+    padding: 10,
+    margin: 5,
+  },
+  saveBtnTitle: {
+    textAlign: 'center',
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: 22,
   },
 });

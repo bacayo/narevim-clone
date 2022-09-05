@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, Pressable} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 import Colors from '../constants/Colors/Colors';
@@ -13,15 +13,20 @@ import AddAddresScreen from '../screens/AddAddressScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import UserInfoScreen from '../screens/UserInfoScreen';
 
+import TestAdressScreen from '../screens/TestAddressScreen/TestAdressScreen';
+import {getCityAsync, getTownAsync} from '../api';
+
 const ProfileStack = () => {
   const Stack = createNativeStackNavigator();
   const {user} = useSelector(state => state.loginSlice);
-
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   //* navigate to add address screen
   const navigateAddAddressScreen = () => {
     navigation.navigate('AddAddressScreen');
+    dispatch(getCityAsync());
+    dispatch(getTownAsync({id: '1'}));
   };
 
   return (
@@ -65,6 +70,7 @@ const ProfileStack = () => {
               ),
             }}
           />
+          <Stack.Screen name="TestAdressScreen" component={TestAdressScreen} />
           <Stack.Screen
             name="AddAddressScreen"
             component={AddAddresScreen}

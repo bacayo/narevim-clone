@@ -162,6 +162,26 @@ export const getTownAsync = createAsyncThunk(
     const params = new FormData();
     params.append('city_id', data.id);
     const response = await axios.post('town', params);
+    console.log(params);
+    return response.data;
+  },
+);
+
+//* save address
+export const saveAddressAsync = createAsyncThunk(
+  'saveAddressAsync',
+  async data => {
+    const params = new FormData();
+    params.append('name', data.name);
+    params.append('surname', data.surname);
+    params.append('email', data.email);
+    params.append('telephone', data.telephone);
+    params.append('city', data.city);
+    params.append('town', data.town);
+    params.append('clear_address', data.clear_address);
+    const response = await axios.post('save_address', params);
+    console.log(params);
+    console.log(response.data);
     return response.data;
   },
 );

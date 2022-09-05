@@ -1,86 +1,87 @@
-import {View, Text, Alert, Modal, Pressable, FlatList} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {
+  View,
+  Text,
+  Modal,
+  Pressable,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
+import {getTownAsync, saveAddressAsync} from '../../api';
 import TextInputCard from '../../components/TextInputCard';
+import IconSvg from '../../components/IconComponent/Icon';
 import Colors from '../../constants/Colors/Colors';
 import Strings from '../../constants/Strings/Strings';
 import styles from './AddAddressScreenStyles';
-import IconSvg from '../../components/IconComponent/Icon';
-import {getCityAsync, getTownAsync} from '../../api';
 
-// global id for getting data array index
-let id = 1;
-
-const CityComponent = ({city, modalVisible, setModalVisible}) => {
-  const handleCity = () => {
-    // assigning city id to id
-    id = city.id;
-    // close modal
-    setModalVisible(!modalVisible);
-  };
-
-  return (
-    <Pressable onPress={handleCity}>
-      <Text style={styles.cityCard}>{city.title}</Text>
-    </Pressable>
-  );
-};
-
-// modal for listing cities
-const ModalComponent = ({modalVisible, setModalVisible}) => {
+const TestAdressScreen = () => {
   const {city} = useSelector(state => state.getCitySlice);
-  const renderCity = ({item}) => (
-    <CityComponent
-      city={item}
-      modalVisible={modalVisible}
-      setModalVisible={setModalVisible}
-    />
-  );
+  const {town} = useSelector(state => state.getTownSlice);
 
-  return (
-    <View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View>
-          <View style={styles.cityModalList}>
-            <FlatList data={city} renderItem={renderCity} />
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text />
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-    </View>
-  );
-};
-
-const AddAddressScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [myId, setMyId] = useState(id);
+  const [modalVisibleTown, setModalVisibleTown] = useState(false);
+  const [cityId, setCityId] = useState(1);
+  const [townId, setTownId] = useState(1);
+
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [clearAddress, setClearAddress] = useState('');
+
+  const [currentCity, setCurrentCity] = useState({title: 'ADANA', id: '1'});
+  const [currentTown, setCurrentTown] = useState({title: 'ALADAĞ', id: '1'});
 
   const dispatch = useDispatch();
-  const {city} = useSelector(state => state.getCitySlice);
 
-  const selectCity = () => {
-    setModalVisible(true);
-    setMyId(myId);
-    dispatch(getCityAsync());
+  const selectCity = item => {
+    setModalVisible(false);
+    setCityId(item.id);
+    setCurrentCity(city[item.id - 1]);
+    setCurrentTown(town[0]);
+  };
+
+  const selectTown = item => {
+    setModalVisibleTown(false);
+
+    setTownId(item.id);
+    setCurrentTown(item);
+  };
+
+  const saveAddress = () => {
+    dispatch(
+      saveAddressAsync({
+        name,
+        surname,
+        telephone: phone,
+        email,
+        city: currentCity.id,
+        town: currentTown.id,
+        clear_address: clearAddress,
+      }),
+    );
   };
 
   useEffect(() => {
-    dispatch(getCityAsync());
-    dispatch(getTownAsync({id}));
-    console.log(myId);
-  }, [dispatch, myId]);
+    dispatch(getTownAsync({id: cityId}));
+  }, [cityId, dispatch]);
+
+  const renderCity = ({item}) => (
+    <Pressable
+      onPress={() => {
+        selectCity(item);
+      }}>
+      <Text style={styles.cityCard}>{item.title}</Text>
+    </Pressable>
+  );
+
+  const renderTown = ({item}) => (
+    <Pressable onPress={() => selectTown(item)}>
+      <Text style={styles.cityCard}>{item.title}</Text>
+    </Pressable>
+  );
 
   return (
     <View style={styles.container}>
@@ -92,6 +93,8 @@ const AddAddressScreen = () => {
         height={30}
         stroke={Colors.primaryColor}
         placeholder={Strings.firstName}
+        value={name}
+        onChangeText={setName}
       />
       <TextInputCard
         name={'user'}
@@ -99,6 +102,8 @@ const AddAddressScreen = () => {
         height={30}
         stroke={Colors.primaryColor}
         placeholder={Strings.surname}
+        value={surname}
+        onChangeText={setSurname}
       />
       <TextInputCard
         name={'phone'}
@@ -106,6 +111,17 @@ const AddAddressScreen = () => {
         height={30}
         stroke={Colors.primaryColor}
         placeholder={Strings.phone}
+        value={phone}
+        onChangeText={setPhone}
+      />
+      <TextInputCard
+        name={'phone'}
+        width={30}
+        height={30}
+        stroke={Colors.primaryColor}
+        placeholder={Strings.email}
+        value={email}
+        onChangeText={setEmail}
       />
 
       <View style={styles.bottomHeaderTitle}>
@@ -114,27 +130,61 @@ const AddAddressScreen = () => {
       </View>
       <View style={styles.line} />
       <Text style={styles.city}>Şehir Seçin</Text>
-      {/* modal başlıyor  */}
-      <ModalComponent
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
-      {/* modal bitiyor  */}
-      <Pressable style={styles.cityContainer} onPress={selectCity}>
-        <Text style={styles.cityTitle}>
-          {city === undefined ? '' : city[id - 1].title}
-        </Text>
+
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View>
+          <View style={styles.cityModal}>
+            <FlatList data={city} renderItem={renderCity} />
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisibleTown}>
+        <View style={styles.centeredView}>
+          <View style={styles.cityModal}>
+            <FlatList data={town} renderItem={renderTown} />
+          </View>
+        </View>
+      </Modal>
+      <Pressable
+        style={styles.cityContainer}
+        onPress={() => setModalVisible(true)}>
+        <Text style={styles.cityTitle}>{currentCity.title}</Text>
         <IconSvg
           name="downArrow"
-          width={20}
-          height={20}
+          width={15}
+          height={15}
           stroke={Colors.black}
         />
       </Pressable>
+      <Text style={styles.city}>İlçe Seçin</Text>
+      <Pressable
+        style={styles.cityContainer}
+        onPress={() => setModalVisibleTown(true)}>
+        <Text style={styles.cityTitle}>{currentTown?.title}</Text>
+        <IconSvg
+          name="downArrow"
+          width={15}
+          height={15}
+          stroke={Colors.black}
+        />
+      </Pressable>
+      <TextInputCard
+        name={'home'}
+        width={30}
+        height={30}
+        stroke={Colors.primaryColor}
+        placeholder={'Adres'}
+        value={clearAddress}
+        onChangeText={setClearAddress}
+      />
+      <TouchableOpacity style={styles.saveBtn} onPress={saveAddress}>
+        <Text style={styles.saveBtnTitle}>Kaydet</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default AddAddressScreen;
-
-//* modal view get cities
+export default TestAdressScreen;
