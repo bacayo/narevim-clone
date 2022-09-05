@@ -186,6 +186,18 @@ export const saveAddressAsync = createAsyncThunk(
   },
 );
 
+//* remove address from the list
+export const removeAddressAsync = createAsyncThunk(
+  'removeAddressAsync',
+  async (data, thunkAPI) => {
+    const params = new FormData();
+    params.append('address_id', data.id);
+    const response = await axios.post('removeAddress', params);
+    thunkAPI.dispatch(addressListAsync());
+    return response.data;
+  },
+);
+
 //* add to basket
 export const addToBasketAsync = createAsyncThunk(
   'addToBasketAsync',

@@ -11,11 +11,15 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: Colors.white,
   },
+  innerContainer: {
+    flexDirection: 'row',
+  },
   addressDetail: {
     fontSize: 18,
     fontWeight: '400',
     color: Colors.black,
     padding: 5,
+    flex: 1,
   },
   city: {
     fontSize: 18,
