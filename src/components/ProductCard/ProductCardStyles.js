@@ -1,17 +1,21 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colors from '../../constants/Colors/Colors';
 
 export default StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width / 2,
-    marginHorizontal: 5,
+    // width: Dimensions.get('window').width / 2,
+    // marginHorizontal: 5,
+    margin: 5,
     flex: 1,
     marginBottom: 5,
+    backgroundColor: Colors.white,
+    borderRadius: 5,
   },
   image: {
     height: 140,
     width: '100%',
     resizeMode: 'contain',
+    flex: 1,
   },
   innerContainer: {
     marginTop: 20,
@@ -48,7 +52,7 @@ export default StyleSheet.create({
     borderColor: '#e0e0e0',
     borderWidth: 1,
     borderRadius: 5,
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   btnTitle: {
     textAlign: 'center',

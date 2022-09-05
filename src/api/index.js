@@ -263,3 +263,15 @@ export const favoriteListAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* change password
+export const changePasswordAsync = createAsyncThunk(
+  'changePasswordAsync',
+  async data => {
+    const params = new FormData();
+    params.append('old_password', data.old_password);
+    params.append('new_password', data.new_password);
+    const response = await axios.post('changePassword', params);
+    return response.data;
+  },
+);

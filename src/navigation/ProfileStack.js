@@ -13,6 +13,8 @@ import AddAddresScreen from '../screens/AddAddressScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import UserInfoScreen from '../screens/UserInfoScreen';
 import {getCityAsync, getTownAsync} from '../api';
+import Strings from '../constants/Strings/Strings';
+import StringScreens from '../constants/Strings/StringScreens';
 
 const ProfileStack = () => {
   const Stack = createNativeStackNavigator();
@@ -32,7 +34,7 @@ const ProfileStack = () => {
       {user === undefined ? (
         <>
           <Stack.Screen
-            name="LoginScreen"
+            name={StringScreens.loginScreen}
             component={LoginScreen}
             options={{headerShown: false}}
           />
@@ -47,19 +49,19 @@ const ProfileStack = () => {
       ) : (
         <>
           <Stack.Screen
-            name="AccountScreen"
+            name={StringScreens.accountScreen}
             component={AccountScreen}
             options={{
               headerBackVisible: false,
-              headerTitle: 'Hesabım',
+              title: Strings.account,
               headerTintColor: Colors.primaryColor,
             }}
           />
           <Stack.Screen
-            name="AddressScreen"
+            name={StringScreens.addressScreen}
             component={AddressScreen}
             options={{
-              headerTitle: 'Adreslerim',
+              title: Strings.address,
               headerTintColor: Colors.primaryColor,
               headerRight: () => (
                 <Pressable onPress={navigateAddAddressScreen}>
@@ -69,19 +71,26 @@ const ProfileStack = () => {
             }}
           />
           <Stack.Screen
-            name="AddAddressScreen"
+            name={StringScreens.addAddressScreen}
             component={AddAddresScreen}
             options={{
               title: 'Adres Ekle',
               headerTintColor: Colors.primaryColor,
             }}
           />
-          <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
           <Stack.Screen
-            name="UserInfoScreen"
+            name={StringScreens.favoritesScreen}
+            component={FavoritesScreen}
+            options={{
+              title: Strings.favoriteProducts,
+              headerTintColor: Colors.primaryColor,
+            }}
+          />
+          <Stack.Screen
+            name={StringScreens.userInfoScreen}
             component={UserInfoScreen}
             options={{
-              title: 'Kullanıcı Bilgileri',
+              title: Strings.userInfo,
               headerTintColor: Colors.primaryColor,
             }}
           />

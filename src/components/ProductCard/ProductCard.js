@@ -33,8 +33,8 @@ const ProductCard = ({product, image_path}) => {
           <Icon style={styles.star} name="star-rate" />
           <Icon style={styles.star} name="star-rate" />
           <Text style={styles.review}>({product.review})</Text>
+          <Text style={styles.price}>{product.price} TL</Text>
         </View>
-        <Text style={styles.price}>{product.price} TL</Text>
         <View style={styles.btn}>
           <Text style={styles.btnTitle}>Ürün Detayi</Text>
         </View>

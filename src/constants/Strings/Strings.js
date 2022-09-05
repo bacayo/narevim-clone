@@ -19,4 +19,5 @@ export default {
   userInfo: 'Kullanıcı Bilgileri',
   changePassword: 'Şifre Değiştir',
   logout: 'Çıkış yap',
+  favoriteProducts: 'Favori Ürünlerim',
 };
