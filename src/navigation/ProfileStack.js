@@ -12,8 +12,6 @@ import AddressScreen from '../screens/AddressScreen';
 import AddAddresScreen from '../screens/AddAddressScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import UserInfoScreen from '../screens/UserInfoScreen';
-
-import TestAdressScreen from '../screens/TestAddressScreen/TestAdressScreen';
 import {getCityAsync, getTownAsync} from '../api';
 
 const ProfileStack = () => {
@@ -70,7 +68,6 @@ const ProfileStack = () => {
               ),
             }}
           />
-          <Stack.Screen name="TestAdressScreen" component={TestAdressScreen} />
           <Stack.Screen
             name="AddAddressScreen"
             component={AddAddresScreen}

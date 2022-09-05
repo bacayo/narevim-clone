@@ -15,6 +15,8 @@ import {
   Bin,
   Minus,
   Plus,
+  HeartEmpty,
+  HeartFilled,
 } from '.';
 import React from 'react';
 
@@ -35,6 +37,8 @@ const icon = {
   bin: Bin,
   minus: Minus,
   plus: Plus,
+  emptyHeart: HeartEmpty,
+  filledHeart: HeartFilled,
 };
 
 export default function IconSvg(props) {

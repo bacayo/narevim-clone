@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
-import {getTownAsync, saveAddressAsync} from '../../api';
+import {addressListAsync, getTownAsync, saveAddressAsync} from '../../api';
 import TextInputCard from '../../components/TextInputCard';
 import IconSvg from '../../components/IconComponent/Icon';
 import Colors from '../../constants/Colors/Colors';
@@ -35,6 +36,7 @@ const TestAdressScreen = () => {
   const [currentTown, setCurrentTown] = useState({title: 'ALADAĞ', id: '1'});
 
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const selectCity = item => {
     setModalVisible(false);
@@ -51,6 +53,7 @@ const TestAdressScreen = () => {
   };
 
   const saveAddress = () => {
+    navigation.navigate('AddressScreen');
     dispatch(
       saveAddressAsync({
         name,
@@ -62,6 +65,7 @@ const TestAdressScreen = () => {
         clear_address: clearAddress,
       }),
     );
+    dispatch(addressListAsync());
   };
 
   useEffect(() => {

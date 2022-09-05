@@ -242,3 +242,24 @@ export const updateCartAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* toggle favorite
+export const toggleFavoriteAsync = createAsyncThunk(
+  'toggleFavoriteAsync',
+  async (data, thunkAPI) => {
+    const params = new FormData();
+    params.append('product_id', data.id);
+    const response = await axios.post('toggleFavoritte', params);
+    thunkAPI.dispatch(getProductDetailAsync(data));
+    return response.data;
+  },
+);
+
+//* get favorites item in list
+export const favoriteListAsync = createAsyncThunk(
+  'favoriteListSlice/favoriteListAsync',
+  async () => {
+    const response = await axios.get('favoritte');
+    return response.data;
+  },
+);

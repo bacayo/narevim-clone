@@ -22,7 +22,7 @@ const getProductDetailSlice = createSlice({
       state.item = action.payload.data;
       state.image_path = action.payload.image_path;
       state.images = action.payload.images;
-      state.isFavorite = action.payload.isFavorite;
+      state.isFavorite = action.payload.isFavoritte;
       state.status = action.payload.status;
     },
     [getProductDetailAsync.rejected]: (state, action) => {

@@ -3,6 +3,8 @@ export {default as ArrowRight} from './ArrowRight';
 export {default as Back} from './Back';
 export {default as Bin} from './Bin';
 export {default as DownArrow} from './DownArrow';
+export {default as HeartEmpty} from './HeartEmpty';
+export {default as HeartFilled} from './HeartFilled';
 export {default as Heart} from './Heart';
 export {default as Home} from './Home';
 export {default as Key} from './Key';
