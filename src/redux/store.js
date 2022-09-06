@@ -18,6 +18,7 @@ import getTownSlice from './narevim/getTownSlice';
 import productsSlice from './narevim/productsSlice';
 import getBasketSlice from './narevim/getBasketSlice';
 import favoriteListSlice from './narevim/favoriteListSlice';
+import orderSlice from './narevim/orderSlice';
 
 const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ const store = configureStore({
     productsSlice,
     getBasketSlice,
     favoriteListSlice,
+    orderSlice,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });

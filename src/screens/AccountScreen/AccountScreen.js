@@ -41,6 +41,11 @@ const AccountScreen = () => {
     navigation.navigate(StringScreens.changePasswordScreen);
   };
 
+  //* navigate orders screen
+  const handleOrders = () => {
+    navigation.navigate('OrderScreen');
+  };
+
   useEffect(() => {
     logoutStatus === 'success' && navigation.goBack();
   }, [navigation, logoutStatus]);
@@ -48,7 +53,11 @@ const AccountScreen = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/narlogo.png')} />
-      <ListCard title={Strings.order} iconName={'order'} />
+      <ListCard
+        title={Strings.order}
+        iconName={'order'}
+        onPress={handleOrders}
+      />
       <ListCard
         title={Strings.favorites}
         iconName={'heart'}

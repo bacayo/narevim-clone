@@ -275,3 +275,12 @@ export const changePasswordAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* get orders
+export const getOrdersAsync = createAsyncThunk(
+  'orderSlice/getOrdersAsync',
+  async () => {
+    const response = await axios.get('orders');
+    return response.data;
+  },
+);

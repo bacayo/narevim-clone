@@ -7,4 +7,5 @@ export default {
   favoritesScreen: 'FavoritesScreen',
   userInfoScreen: 'UserInfoScreen',
   changePasswordScreen: 'ChangePasswordScreen',
+  orderScreen: 'OrderScreen',
 };
