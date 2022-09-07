@@ -4,10 +4,17 @@ import {useSelector, useDispatch} from 'react-redux';
 
 import {getOrdersAsync} from '../../api';
 import styles from './OrderScreenStyles';
+import {useNavigation} from '@react-navigation/native';
 
 const OrderCard = ({order, imagePath}) => {
-  console.log(order.order_detail[0]);
-  console.log(imagePath + order.order_detail[0].img_url);
+  const navigation = useNavigation();
+
+  const handleDetail = () => {
+    navigation.navigate('ProductDetailScreen', {
+      id: order.order_detail[0].product_id,
+      title: order.order_detail[0].title,
+    });
+  };
 
   return (
     <View style={styles.cardContainer}>
@@ -24,7 +31,7 @@ const OrderCard = ({order, imagePath}) => {
       <View style={styles.line} />
       <View style={styles.innerContainer}>
         <Text style={styles.cargoStatus}>Kargo bekleniyor</Text>
-        <Pressable st>
+        <Pressable onPress={handleDetail}>
           <Image
             style={styles.image}
             source={{uri: imagePath + order.order_detail[0].img_url}}

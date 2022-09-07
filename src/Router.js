@@ -2,7 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import BasketScreen from './screens/BasketScreen';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Colors from './constants/Colors/Colors';
 import Strings from './constants/Strings/Strings';
@@ -57,6 +56,7 @@ const Router = () => {
           component={BasketStack}
           options={{
             title: Strings.basket,
+            headerShown: false,
           }}
         />
         <Tab.Screen

@@ -284,3 +284,23 @@ export const getOrdersAsync = createAsyncThunk(
     return response.data;
   },
 );
+
+//* get cargo options
+export const cargoListAsync = createAsyncThunk(
+  'cargoListSlice/cargoListAsync',
+  async () => {
+    const response = await axios.get('cargo');
+    return response.data;
+  },
+);
+
+export const discountCouponAsync = createAsyncThunk(
+  'discountCouponAsync',
+  async data => {
+    const params = new FormData();
+    params.append('discount_code', data.discount);
+    const response = await axios.post('couponControl', params);
+    console.log(params);
+    return response.data;
+  },
+);

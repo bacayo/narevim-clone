@@ -5,13 +5,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import styles from './BasketScreenStyles';
 import BasketItemCard from '../../components/BasketItemCard';
 import {getBasketAsync} from '../../api';
+import {useNavigation} from '@react-navigation/native';
+import StringScreens from '../../constants/Strings/StringScreens';
 
 const BasketScreen = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const {basket, total} = useSelector(state => state.getBasketSlice);
 
   const renderBasket = ({item}) => <BasketItemCard product={item} />;
+
+  const navigateSelectAddress = () => {
+    navigation.navigate(StringScreens.selectAddressScreen);
+  };
 
   useEffect(() => {
     dispatch(getBasketAsync());
@@ -25,7 +32,9 @@ const BasketScreen = () => {
           <Text style={styles.basketTitle}>Sepet Toplam</Text>
           <Text style={styles.price}>{total} TL</Text>
         </View>
-        <TouchableOpacity style={styles.shopBtn}>
+        <TouchableOpacity
+          style={styles.shopBtn}
+          onPress={navigateSelectAddress}>
           <Text style={styles.shopBtnTitle}>Alışverişi Tamamla</Text>
         </TouchableOpacity>
       </View>

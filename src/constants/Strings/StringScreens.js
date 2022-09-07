@@ -8,4 +8,6 @@ export default {
   userInfoScreen: 'UserInfoScreen',
   changePasswordScreen: 'ChangePasswordScreen',
   orderScreen: 'OrderScreen',
+  selectAddressScreen: 'SelectAddressScreen',
+  paymentMethodScreen: 'PaymentMethodScreen',
 };
