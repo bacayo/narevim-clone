@@ -5,11 +5,17 @@ import styles from './SearchBarStyles';
 import SearchIcon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../constants/Colors/Colors';
 
-const SearchBar = ({placeholder}) => {
+const SearchBar = ({placeholder, onPress, value, onChangeText}) => {
   return (
     <View style={styles.searchSection}>
-      <TextInput style={styles.input} placeholder={placeholder} />
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        style={styles.input}
+        placeholder={placeholder}
+      />
       <SearchIcon
+        onPress={onPress}
         style={styles.searchIcon}
         name="search"
         size={30}

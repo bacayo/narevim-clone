@@ -7,6 +7,23 @@ axios.defaults.headers['X-API-KEY'] = API_KEY;
 axios.defaults.baseURL = Config.BASE_URL;
 axios.defaults.headers['Content-Type'] = 'multipart/form-data';
 
+//*
+export const searchProductAsync = createAsyncThunk(
+  'productSlice/searchProductAsync',
+  async data => {
+    // const params = new URLSearchParams();
+    const params = new FormData();
+    params.append('keywords', data.keywords);
+    params.append('page', 0);
+    params.append('per_page', 10);
+    params.append('sorting', 'ASC');
+    const response = await axios.post('searchProduct', params);
+    console.log(response.data);
+    console.log(params);
+    return response.data;
+  },
+);
+
 //* get sliders
 export const getSlidersAsync = createAsyncThunk(
   'getSlidersSlice/getSlidersAsync',
@@ -301,6 +318,18 @@ export const discountCouponAsync = createAsyncThunk(
     params.append('discount_code', data.discount);
     const response = await axios.post('couponControl', params);
     console.log(params);
+    return response.data;
+  },
+);
+
+export const createOrderAsync = createAsyncThunk(
+  'createOrderAsync',
+  async data => {
+    const params = new FormData();
+    params.append('payment_type', data.payment_type);
+    params.append('cargo_id', data.cargo_id);
+    params.append('order_note', data.order_note);
+    const response = await axios.post('createOrder', params);
     return response.data;
   },
 );

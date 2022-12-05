@@ -10,4 +10,6 @@ export default {
   orderScreen: 'OrderScreen',
   selectAddressScreen: 'SelectAddressScreen',
   paymentMethodScreen: 'PaymentMethodScreen',
+  creditCardScreen: 'CreditCardScreen',
+  basketScreen: 'BasketScreen',
 };

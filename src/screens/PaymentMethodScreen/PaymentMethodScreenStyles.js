@@ -12,8 +12,10 @@ export default StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     flex: 1,
+    borderRadius: 5,
   },
   modalView: {
+    borderRadius: 5,
     padding: 10,
     margin: 5,
     alignItems: 'center',
@@ -25,6 +27,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    backgroundColor: Colors.white,
   },
   inputContainer: {
     borderWidth: 1,
@@ -46,12 +49,13 @@ export default StyleSheet.create({
     margin: 10,
   },
   paymentTitleContainer: {
-    padding: 2,
+    padding: 5,
   },
   paymentTitle: {
     fontSize: 16,
     color: Colors.black,
     fontWeight: '400',
+    padding: 5,
   },
   heading: {
     marginVertical: 2,

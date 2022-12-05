@@ -1,4 +1,4 @@
-import {View, Image, FlatList, ScrollView, Text} from 'react-native';
+import {View, Image, FlatList, ScrollView, Text, Keyboard} from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -9,19 +9,25 @@ import ImageComponent from '../../components/ImageComponent';
 import ProductCard from '../../components/ProductCard';
 import BrandsCard from '../../components/BrandsCard';
 
-import {brandListAsync, getSlidersAsync, mainProductsAsync} from '../../api';
+import {
+  brandListAsync,
+  getSlidersAsync,
+  mainProductsAsync,
+  searchProductAsync,
+} from '../../api';
 import {useEffect} from 'react';
+import {useState} from 'react';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   //get slider data
-  const {items, status, image_path} = useSelector(
-    state => state.getSlidersSlice,
-  );
+  const {items, image_path} = useSelector(state => state.getSlidersSlice);
   const {mainProducts, mainProductsImgPath} = useSelector(
     state => state.getMainProductsSlice,
   );
   const {brands, brandsImagePath} = useSelector(state => state.brandListSlice);
+
+  const [text, setText] = useState('');
 
   //render sliders
   const renderSlider = ({item}) => (
@@ -39,11 +45,14 @@ const HomeScreen = () => {
     <ProductCard product={item} image_path={mainProductsImgPath} />
   );
 
+  const searchProduct = () => {
+    dispatch(searchProductAsync({keywords: text}));
+    Keyboard.dismiss();
+  };
+
   useEffect(() => {
     dispatch(getSlidersAsync());
   }, [dispatch]);
-
-  console.log(status);
 
   useEffect(() => {
     dispatch(mainProductsAsync());
@@ -56,7 +65,12 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/narlogo.png')} />
-      <SearchBar placeholder="Aramak istediğiniz ürünü girin..." />
+      <SearchBar
+        value={text}
+        onChangeText={setText}
+        onPress={searchProduct}
+        placeholder="Aramak istediğiniz ürünü girin..."
+      />
       <ScrollView>
         <FlatList data={items} renderItem={renderSlider} />
         <Text style={styles.brandsBanner}>Markalar</Text>
@@ -74,20 +88,6 @@ const HomeScreen = () => {
           numColumns={2}
         />
       </ScrollView>
-      {/* <FlatList
-        data={items}
-        renderItem={renderSlider}
-        ListFooterComponent={() => (
-          <FlatList
-            data={mainProducts}
-            renderItem={renderMainProducts}
-            numColumns={2}
-          />
-        )}
-        ListFooterComponent={() => (
-          <FlatList data={brands} renderItem={renderBrand} />
-        )}
-      /> */}
     </View>
   );
 };

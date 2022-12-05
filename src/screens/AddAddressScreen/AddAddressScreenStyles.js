@@ -74,6 +74,7 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     borderRadius: 5,
+    // backgroundColor: 'green',
   },
   saveBtn: {
     backgroundColor: Colors.primaryColor,
@@ -91,5 +92,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginTop: 22,
+    borderWidth: 1,
   },
 });

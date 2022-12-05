@@ -21,4 +21,6 @@ export default {
   logout: 'Çıkış yap',
   favoriteProducts: 'Favori Ürünlerim',
   forgotPassword: 'Şifremi Unuttum',
+  paymentMethod: 'Ödeme Yöntemi',
+  cargo: 'Kargo',
 };

@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 import styles from './PaymentMethodScreenStyles';
 import IconSvg from '../../components/IconComponent/Icon';
 import {cargoListAsync, discountCouponAsync} from '../../api';
+import StringScreens from '../../constants/Strings/StringScreens';
 
 const PaymentMethod = ({payment, onPress}) => {
   return (
@@ -30,9 +32,11 @@ const PaymentMethodScreen = () => {
 
   const [currentCargo, setCurrentCargo] = useState('UPS KARGO');
   const [discount, setDiscount] = useState('');
+  const [note, setNote] = useState('');
 
   const [modalVisiblePayment, setModalVisiblePayment] = useState(false);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const PAYMENT_METHOD_DATA = [
     {
@@ -64,6 +68,10 @@ const PaymentMethodScreen = () => {
 
   const handleDiscount = () => {
     dispatch(discountCouponAsync({discount: discount}));
+  };
+
+  const navigateCreditCard = () => {
+    navigation.navigate(StringScreens.creditCardScreen, {note});
   };
 
   useEffect(() => {
@@ -99,7 +107,6 @@ const PaymentMethodScreen = () => {
           <IconSvg name="downArrow" width={16} height={16} />
         </Pressable>
       </View>
-
       <View style={styles.innerContainer}>
         <Text style={styles.heading}>Kupon Kodu Ekle:</Text>
         <View style={styles.couponContainer}>
@@ -114,7 +121,19 @@ const PaymentMethodScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.payBtn}>
+
+      <View style={styles.innerContainer}>
+        <Text style={styles.heading}>Eklemek istediğiniz not var mı?</Text>
+        <View style={styles.couponContainer}>
+          <TextInput
+            placeholder="Not"
+            style={styles.couponInput}
+            value={note}
+            onChangeText={setNote}
+          />
+        </View>
+      </View>
+      <TouchableOpacity style={styles.payBtn} onPress={navigateCreditCard}>
         <Text style={styles.payBtnTitle}>Ödeme Ekranı</Text>
       </TouchableOpacity>
     </View>

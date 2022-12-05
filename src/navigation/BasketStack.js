@@ -10,6 +10,8 @@ import StringScreens from '../constants/Strings/StringScreens';
 import BasketScreen from '../screens/BasketScreen';
 import SelectAddressScreen from '../screens/SelectAddressScreen';
 import PaymentMethodScreen from '../screens/PaymentMethodScreen';
+import CreditCardScreen from '../screens/CreditCardScreen';
+import Strings from '../constants/Strings/Strings';
 
 const BasketStack = () => {
   const Stack = createNativeStackNavigator();
@@ -24,7 +26,11 @@ const BasketStack = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="BasketScreen" component={BasketScreen} options={{}} />
+      <Stack.Screen
+        name="BasketScreen"
+        component={BasketScreen}
+        options={{title: 'Sepetim'}}
+      />
       <Stack.Screen
         name={StringScreens.selectAddressScreen}
         component={SelectAddressScreen}
@@ -41,6 +47,14 @@ const BasketStack = () => {
       <Stack.Screen
         name={StringScreens.paymentMethodScreen}
         component={PaymentMethodScreen}
+        options={{
+          title: Strings.paymentMethod + '-' + Strings.cargo,
+          headerTintColor: Colors.primaryColor,
+        }}
+      />
+      <Stack.Screen
+        name={StringScreens.creditCardScreen}
+        component={CreditCardScreen}
       />
     </Stack.Navigator>
   );

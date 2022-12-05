@@ -1,12 +1,12 @@
 import {View, Text, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import styles from './ProductCardDetailStyles';
 import {addToBasketAsync, toggleFavoriteAsync} from '../../api';
 import IconSvg from '../IconComponent/Icon';
-import {useEffect} from 'react';
+import StringScreens from '../../constants/Strings/StringScreens';
 
 export const Footer = ({product}) => {
   const navigation = useNavigation();
